@@ -1,0 +1,12 @@
+server:
+  port: 8181
+spring:
+  application:
+    name: API-GATEWAY-SERVICE
+  cloud:
+    gateway:  
+      routes:
+        -  id: USER-SERVICE
+           uri: http://localhost:7000
+           predicates:
+            - Path=/api/v1/user/** 
