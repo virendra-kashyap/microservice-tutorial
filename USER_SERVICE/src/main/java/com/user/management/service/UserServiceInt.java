@@ -17,4 +17,6 @@ public interface UserServiceInt {
 
 	public void update(UserDTO userDTO);
 
+	public UserDTO authenticate(String loginId, String password);
+
 }
