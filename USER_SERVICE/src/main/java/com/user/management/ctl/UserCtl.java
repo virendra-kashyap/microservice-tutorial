@@ -3,7 +3,6 @@ package com.user.management.ctl;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,8 +18,11 @@ import com.user.management.service.UserServiceInt;
 @RequestMapping("/api/v1/user/")
 public class UserCtl {
 
-	@Autowired
-	UserServiceInt userServiceInt;
+	private final UserServiceInt userServiceInt;
+
+	public UserCtl(UserServiceInt userServiceInt) {
+		this.userServiceInt = userServiceInt;
+	}
 
 	@GetMapping("/welcome")
 	public String get() {
@@ -48,7 +50,7 @@ public class UserCtl {
 	public ORSResponse search() {
 		ORSResponse response = new ORSResponse();
 		List<UserDTO> list = userServiceInt.list();
-		if (list != null && list.size() > 0) {
+		if (!list.isEmpty()) {
 			response.setSuccess(true);
 			response.addData(list);
 		} else {
