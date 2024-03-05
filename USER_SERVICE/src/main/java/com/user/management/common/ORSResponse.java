@@ -3,17 +3,22 @@ package com.user.management.common;
 import java.util.HashMap;
 import java.util.Map;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ORSResponse {
-	public static String DATA = "data";
-	public static String INPUT_ERROR = "inputerror";
-	public static String MESSAGE = "message";
+	private static final String DATA = "data";
+	private static final String INPUT_ERROR = "inputerror";
+	private static final String MESSAGE = "message";
 
 	private boolean success = false;
-
-	private Map<String, Object> result = new HashMap<String, Object>();
-
-	public ORSResponse() {
-	}
+	private Map<String, Object> result = new HashMap<>();
 
 	public ORSResponse(boolean success) {
 		this.success = success;
@@ -28,22 +33,6 @@ public class ORSResponse {
 		this.success = success;
 		addMessage(message);
 		addData(value);
-	}
-
-	public boolean isSuccess() {
-		return success;
-	}
-
-	public void setSuccess(boolean success) {
-		this.success = success;
-	}
-
-	public Map<String, Object> getResult() {
-		return result;
-	}
-
-	public void setResult(Map<String, Object> result) {
-		this.result = result;
 	}
 
 	public void addResult(String key, Object value) {

@@ -3,7 +3,6 @@ package com.user.management.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,8 +13,11 @@ import com.user.management.repository.UserRepositroy;
 @Transactional
 public class UserServiceImpl implements UserServiceInt {
 
-	@Autowired
-	UserRepositroy userRepositroy;
+	private final UserRepositroy userRepositroy;
+
+	public UserServiceImpl(UserRepositroy userRepositroy) {
+		this.userRepositroy = userRepositroy;
+	}
 
 	@Override
 	public long add(UserDTO userDTO) {
